@@ -1,0 +1,42 @@
+{
+    "name": "andersonls/siproquim2-mapas",
+    "type": "library",
+    "description": "Gerador de arquivo txt de importação no Siproquim2 para declaração dos Mapas",
+    "keywords": ["Siproquim", "Siproquim2", "Mapas", "PF", "Polícia Federal", "Químicos"],
+    "minimum-stability": "dev",
+    "license": "GPL-3.0-or-later",
+    "homepage": "https://github.com/andersonls/siproquim2-mapas",
+    "authors": [
+        {
+            "name": "Anderson Luiz Silvério",
+            "email": "andersonlsilverio@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : ">=7.0",
+        "ext-json": "*",
+        "justinrainbow/json-schema": "^5.2"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5",
+        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+          "Siproquim\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Siproquim\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "phpcbf": "vendor/bin/phpcbf --standard=psr2 src/",
+        "phpcs": "vendor/bin/phpcs --standard=psr2 src/",
+        "phpstan": "vendor/bin/phpstan analyse src/ --level 7"
+    }
+}
