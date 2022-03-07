@@ -1,0 +1,402 @@
+{
+    "title": "Mapas",
+    "type": "object",
+    "properties": {
+        "cnpj": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/cnpj"
+        },
+        "data": {
+            "required": true,
+            "type": "string",
+            "$ref": "#/definitions/mes_ano"
+        },
+        "demonstrativo_geral": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "produto_controlado": {
+                    "required": false,
+                    "type": ["array","null"],
+                    "minItems": 0,
+                    "maxItems": 99,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "codigo_ncm": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/codigo_ncm"
+                            },
+                            "nome_comercial": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            },
+                            "concentracao": {
+                                "required": true,
+                                "type": "integer",
+                                "$ref": "#/definitions/concentracao"
+                            },
+                            "densidade": {
+                                "required": true,
+                                "type": "number",
+                                "$ref": "#/definitions/densidade"
+                            }
+                        }
+                    }
+                },
+                "produto_composto": {
+                    "required": false,
+                    "type": ["array","null"],
+                    "minItems": 0,
+                    "maxItems": 99,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "ncm": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/ncm"
+                            },
+                            "nome_comercial": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            },
+                            "densidade": {
+                                "required": true,
+                                "type": "number",
+                                "$ref": "#/definitions/densidade"
+                            },
+                            "substancia_controlada": {
+                                "required": true,
+                                "type": "array",
+                                "minItems": 1,
+                                "maxItems": 99,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "codigo_ncm": {
+                                            "required": true,
+                                            "type": "string",
+                                            "$ref": "#/definitions/codigo_ncm"
+                                        },
+                                        "concentracao": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "$ref": "#/definitions/concentracao"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "residuo_controlado": {
+                    "required": false,
+                    "type": ["array","null"],
+                    "minItems": 0,
+                    "maxItems": 99,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "codigo_ncm": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/codigo_ncm"
+                            },
+                            "nome_comercial": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            },
+                            "concentracao": {
+                                "required": true,
+                                "type": "integer",
+                                "$ref": "#/definitions/concentracao"
+                            },
+                            "densidade": {
+                                "required": true,
+                                "type": "number",
+                                "$ref": "#/definitions/densidade"
+                            }
+                        }
+                    }
+                },
+                "residuo_composto": {
+                    "required": false,
+                    "type": ["array","null"],
+                    "minItems": 0,
+                    "maxItems": 99,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "ncm": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/ncm"
+                            },
+                            "nome_comercial": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            },
+                            "densidade": {
+                                "required": true,
+                                "type": "number",
+                                "$ref": "#/definitions/densidade"
+                            },
+                            "substancia_controlada": {
+                                "required": true,
+                                "type": "array",
+                                "minItems": 1,
+                                "maxItems": 99,
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "codigo_ncm": {
+                                            "required": true,
+                                            "type": "string",
+                                            "$ref": "#/definitions/codigo_ncm"
+                                        },
+                                        "concentracao": {
+                                            "required": true,
+                                            "type": "integer",
+                                            "$ref": "#/definitions/concentracao"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+        "movimentacao_nacional": {
+            "required": true,
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 99,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "entrada_saida": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(E|S)$"
+                    },
+                    "operacao": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(EC|ET|ED|EA|EP|EI|ER|SV|ST|SA|SI|SD|SR|SP|SO)$"
+                    },
+                    "cnpj": {
+                        "required": true,
+                        "type": "string",
+                        "$ref": "#/definitions/cnpj"
+                    },
+                    "razao_social": {
+                        "required": true,
+                        "type": "string",
+                        "maxLength": 69
+                    },
+                    "nota_fiscal": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9999999999
+                    },
+                    "data_emissao_nf": {
+                        "required": true,
+                        "type": "string",
+                        "$ref": "#/definitions/data"
+                    },
+                    "armazenagem": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(S|N|F|T)$"
+                    },
+                    "transporte": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(A|F|T)$"
+                    },
+                    "movimento": {
+                        "required": true,
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 99,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "codigo_ncm": {
+                                    "required": true,
+                                    "type": "string",
+                                    "oneOf": [
+                                        { "$ref": "#/definitions/codigo_ncm" },
+                                        { "$ref": "#/definitions/ncm" }
+                                    ]
+                                },
+                                "concentracao": {
+                                    "required": false,
+                                    "type": "integer",
+                                    "$ref": "#/definitions/concentracao"
+                                },
+                                "densidade": {
+                                    "required": true,
+                                    "type": "number",
+                                    "$ref": "#/definitions/densidade"
+                                },
+                                "quantidade": {
+                                    "required": true,
+                                    "type": "number",
+                                    "minimum": 1,
+                                    "maximum": 999999999
+                                },
+                                "unidade": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^(K|L)$"
+                                }
+                            }
+                        }
+                    },
+                    "transportadora": {
+                        "required": false,
+                        "type": ["object","null"],
+                        "properties": {
+                            "cnpj": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/cnpj"
+                            },
+                            "razao_social": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            }
+                        }
+                    },
+                    "armazenadora": {
+                        "required": false,
+                        "type": ["object","null"],
+                        "properties": {
+                            "cnpj": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/cnpj"
+                            },
+                            "razao_social": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            },
+                            "endereco": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            },
+                            "cep": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^[0-9]{8}$"
+                            },
+                            "numero": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 5
+                            },
+                            "complemento": {
+                                "required": false,
+                                "type": "string",
+                                "maxLength": 20
+                            },
+                            "bairro": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 30
+                            },
+                            "uf": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/siglauf"
+                            },
+                            "municipio": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1100000,
+                                "maximum": 9999999
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "consumo": {
+            "required": false,
+            "type": ["array","null"],
+            "minItems": 0,
+            "maxItems": 99,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "codigo_ncm": {
+                        "required": true,
+                        "type": "string",
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/codigo_ncm"
+                            },
+                            {
+                                "$ref": "#/definitions/ncm"
+                            }
+                        ]
+                    },
+                    "concentracao": {
+                        "required": false,
+                        "type": "integer",
+                        "$ref": "#/definitions/concentracao"
+                    },
+                    "densidade": {
+                        "required": true,
+                        "type": "number",
+                        "$ref": "#/definitions/densidade"
+                    },
+                    "quantidade": {
+                        "required": true,
+                        "type": "number",
+                        "minimum": 1,
+                        "maximum": 999999999
+                    },
+                    "unidade": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(K|L)$"
+                    },
+                    "codigo_consumo": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 5
+                    },
+                    "observacao_consumo": {
+                        "required": false,
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "maxLength": 62
+                    },
+                    "data_consumo": {
+                        "required": true,
+                        "type": "string",
+                        "$ref": "#/definitions/data"
+                    }
+                }
+            }
+        }
+    }
+}
