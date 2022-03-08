@@ -1,0 +1,15 @@
+EM1234567800010012345678000100FEV202210001000
+DG
+PRTPN12881067  Acido Sulfúrico                                                      00101,10
+PC1234.56.78Químico composto                                                     05,50
+SCTPN12961074  55
+RCTPN12881067  Residuo de Acido Sulfúrico                                           01066,60
+RS1234.56.78Resíduo composto                                                     06,66
+RBTPN12961074  66
+MVNEEC99999999999999Fornecedor de Químicos                                              000000012301/02/2022NF
+MMPRTPN1288106700101,10        100,000L
+MMPC1234.56.78    05,50        500,000K
+MT98765432109800Transportadora de químicos                                           
+MA43210989876543Armazém dos químicos                                                Rua do armazém                                                       88.270-00088270000Galpão 01          Bairro dos Armazéns          SC4211504
+UCPRTPN1288106700101,10        100,000L4Produto consumido no processo ABCD                            15/02/2022
+UCPRTPN1288106700101,10        100,000L4                                                              20/02/2022

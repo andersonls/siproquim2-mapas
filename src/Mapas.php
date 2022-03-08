@@ -64,6 +64,9 @@ class Mapas
         $definitions = realpath(__DIR__  . '/../resources/definitions.schema');
 
         $jsonSchemaObject = json_decode((string)file_get_contents($jsonSchema));
+        if ($jsonSchemaObject === null) {
+            throw new \RuntimeException('Json schema is invalid');
+        }
         $schemaStorage = new SchemaStorage();
         $schemaStorage->addSchema("file:{$definitions}", $jsonSchemaObject);
         $jsonValidator = new Validator(new Factory($schemaStorage));
@@ -127,7 +130,7 @@ class Mapas
 
                 foreach ($produto->substancia_controlada as $substancia) {
                     $txt .= 'SC'
-                         .  str_pad($produto->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
+                         .  str_pad($substancia->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
                          .  str_pad($substancia->concentracao, 2, '0', STR_PAD_LEFT)
                          .  PHP_EOL
                     ;
@@ -138,7 +141,7 @@ class Mapas
         if (isset($this->std->demonstrativo_geral->residuo_controlado)) {
             foreach ($this->std->demonstrativo_geral->residuo_controlado as $residuo) {
                 $txt .= 'RC'
-                     .  str_pad($produto->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
+                     .  str_pad($residuo->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
                      .  str_pad($residuo->nome_comercial, 70, ' ', STR_PAD_RIGHT)
                      .  str_pad($residuo->concentracao, 3, '0', STR_PAD_LEFT)
                      .  Common::formatDensidade($residuo->densidade)
@@ -158,7 +161,7 @@ class Mapas
 
                 foreach ($residuo->substancia_controlada as $substancia) {
                     $txt .= 'RB'
-                         .  str_pad($produto->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
+                         .  str_pad($substancia->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
                          .  str_pad($substancia->concentracao, 2, '0', STR_PAD_LEFT)
                          .  PHP_EOL
                     ;
@@ -306,7 +309,7 @@ class Mapas
 
         //TODO 3.1.11. Seção Armazenamento (AR)
 
-        return $txt;
+        return trim($txt);
     }
 
     protected function searchTipoProduto(stdClass $demonstrativoGeral, stdClass $produto) : ?string
