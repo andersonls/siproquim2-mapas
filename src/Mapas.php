@@ -91,7 +91,6 @@ class Mapas
 
         $txt = 'EM'
              . $this->std->cnpj
-             . $this->std->cnpj
              . $month
              . $year
              . (isset($this->std->movimentacao_nacional) ? 1 : 0) //Comercialização Nacional
@@ -110,9 +109,9 @@ class Mapas
         if (isset($this->std->demonstrativo_geral->produto_controlado)) {
             foreach ($this->std->demonstrativo_geral->produto_controlado as $produto) {
                 $txt .= 'PR'
-                     .  str_pad($produto->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
-                     .  str_pad($produto->nome_comercial, 70, ' ', STR_PAD_RIGHT)
-                     .  str_pad($produto->concentracao, 3, '0', STR_PAD_LEFT)
+                     .  mb_str_pad($produto->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
+                     .  mb_str_pad($produto->nome_comercial, 70, ' ', STR_PAD_RIGHT)
+                     .  mb_str_pad($produto->concentracao, 3, '0', STR_PAD_LEFT)
                      .  Common::formatDensidade($produto->densidade)
                      .  PHP_EOL
                 ;
@@ -123,15 +122,15 @@ class Mapas
             foreach ($this->std->demonstrativo_geral->produto_composto as $produto) {
                 $txt .= 'PC'
                     .  vsprintf('%s%s%s%s.%s%s.%s%s', str_split($produto->ncm))
-                    .  str_pad(ucfirst(strtolower($produto->nome_comercial)), 70, ' ', STR_PAD_RIGHT)
+                    .  mb_str_pad(ucfirst(strtolower($produto->nome_comercial)), 70, ' ', STR_PAD_RIGHT)
                     .  Common::formatDensidade($produto->densidade)
                     .  PHP_EOL
                 ;
 
                 foreach ($produto->substancia_controlada as $substancia) {
                     $txt .= 'SC'
-                         .  str_pad($substancia->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
-                         .  str_pad($substancia->concentracao, 2, '0', STR_PAD_LEFT)
+                         .  mb_str_pad($substancia->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
+                         .  mb_str_pad($substancia->concentracao, 2, '0', STR_PAD_LEFT)
                          .  PHP_EOL
                     ;
                 }
@@ -141,9 +140,9 @@ class Mapas
         if (isset($this->std->demonstrativo_geral->residuo_controlado)) {
             foreach ($this->std->demonstrativo_geral->residuo_controlado as $residuo) {
                 $txt .= 'RC'
-                     .  str_pad($residuo->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
-                     .  str_pad($residuo->nome_comercial, 70, ' ', STR_PAD_RIGHT)
-                     .  str_pad($residuo->concentracao, 3, '0', STR_PAD_LEFT)
+                     .  mb_str_pad($residuo->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
+                     .  mb_str_pad($residuo->nome_comercial, 70, ' ', STR_PAD_RIGHT)
+                     .  mb_str_pad($residuo->concentracao, 3, '0', STR_PAD_LEFT)
                      .  Common::formatDensidade($residuo->densidade)
                      .  PHP_EOL
                 ;
@@ -154,15 +153,15 @@ class Mapas
             foreach ($this->std->demonstrativo_geral->residuo_composto as $residuo) {
                 $txt .= 'RS'
                     .  vsprintf('%s%s%s%s.%s%s.%s%s', str_split($residuo->ncm))
-                    .  str_pad(ucfirst(strtolower($residuo->nome_comercial)), 70, ' ', STR_PAD_RIGHT)
+                    .  mb_str_pad(ucfirst(strtolower($residuo->nome_comercial)), 70, ' ', STR_PAD_RIGHT)
                     .  Common::formatDensidade($residuo->densidade)
                     .  PHP_EOL
                 ;
 
                 foreach ($residuo->substancia_controlada as $substancia) {
                     $txt .= 'RB'
-                         .  str_pad($substancia->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
-                         .  str_pad($substancia->concentracao, 2, '0', STR_PAD_LEFT)
+                         .  mb_str_pad($substancia->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
+                         .  mb_str_pad($substancia->concentracao, 2, '0', STR_PAD_LEFT)
                          .  PHP_EOL
                     ;
                 }
@@ -190,8 +189,8 @@ class Mapas
                  .  $movimentacao->entrada_saida
                  .  $movimentacao->operacao
                  .  $movimentacao->cnpj
-                 .  str_pad($movimentacao->razao_social, 69, ' ', STR_PAD_RIGHT)
-                 .  str_pad($movimentacao->nota_fiscal, 10, '0', STR_PAD_LEFT)
+                 .  mb_str_pad($movimentacao->razao_social, 69, ' ', STR_PAD_RIGHT)
+                 .  mb_str_pad($movimentacao->nota_fiscal, 10, '0', STR_PAD_LEFT)
                  . \DateTime::createFromFormat('Y-m-d', $movimentacao->data_emissao_nf)->format('d/m/Y')
                  .  $movimentacao->armazenagem
                  .  $movimentacao->transporte
@@ -216,7 +215,7 @@ class Mapas
                 $txt .= 'MM'
                      .  Common::formatCodigoNcmProduto($movimento->codigo_ncm, $tipo)
                      .  (in_array($tipo, ['PR', 'RC']) ?
-                            str_pad($movimento->concentracao, 3, '0', STR_PAD_LEFT) :
+                            mb_str_pad($movimento->concentracao, 3, '0', STR_PAD_LEFT) :
                             '   ')
                      .  Common::formatDensidade($movimento->densidade)
                      .  Common::formatQuantidade($movimento->quantidade)
@@ -229,7 +228,7 @@ class Mapas
                 $razaoSocial = ucfirst(strtolower($movimentacao->transportadora->razao_social));
                 $txt .= 'MT'
                      .  $movimentacao->transportadora->cnpj
-                     .  str_pad($razaoSocial, 70, ' ', STR_PAD_RIGHT)
+                     .  mb_str_pad($razaoSocial, 70, ' ', STR_PAD_RIGHT)
                      .  PHP_EOL
                 ;
             } elseif ($movimentacao->transporte === 'T') {
@@ -241,12 +240,12 @@ class Mapas
             if (isset($movimentacao->armazenadora)) {
                 $txt .= 'MA'
                     .  $movimentacao->armazenadora->cnpj
-                    .  str_pad(ucfirst(strtolower($movimentacao->armazenadora->razao_social)), 70, ' ', STR_PAD_RIGHT)
-                    .  str_pad(ucfirst(strtolower($movimentacao->armazenadora->endereco)), 70, ' ', STR_PAD_RIGHT)
+                    .  mb_str_pad(ucfirst(strtolower($movimentacao->armazenadora->razao_social)), 70, ' ', STR_PAD_RIGHT)
+                    .  mb_str_pad(ucfirst(strtolower($movimentacao->armazenadora->endereco)), 70, ' ', STR_PAD_RIGHT)
                     .  vsprintf('%s%s.%s%s%s-%s%s%s', str_split($movimentacao->armazenadora->cep))
-                    .  str_pad($movimentacao->armazenadora->cep, 5, ' ', STR_PAD_RIGHT)
-                    .  str_pad($movimentacao->armazenadora->complemento, 20, ' ', STR_PAD_RIGHT)
-                    .  str_pad($movimentacao->armazenadora->bairro, 30, ' ', STR_PAD_RIGHT)
+                    .  mb_str_pad($movimentacao->armazenadora->numero, 5, ' ', STR_PAD_RIGHT)
+                    .  mb_str_pad($movimentacao->armazenadora->complemento, 20, ' ', STR_PAD_RIGHT)
+                    .  mb_str_pad($movimentacao->armazenadora->bairro, 30, ' ', STR_PAD_RIGHT)
                     .  $movimentacao->armazenadora->uf
                     .  $movimentacao->armazenadora->municipio
                     .  PHP_EOL
@@ -258,7 +257,125 @@ class Mapas
             }
         }
 
-        //TODO 3.1.4. Seção Movimentação Internacional de Produtos Químicos (MVI)
+        if (isset($this->std->movimentacao_internacional)) {
+            foreach ($this->std->movimentacao_internacional as $mvi) {
+                if (($mvi->operacao === 'E' && in_array($mvi->responsavel_armazenagem, ['E', 'T']) === false) ||
+                    ($mvi->operacao === 'C' && in_array($mvi->responsavel_armazenagem, ['I', 'A', 'T']) === false)
+                ) {
+                    throw new \InvalidArgumentException(
+                        'Campo "responsavel_armazenagem" inválido para o tipo de operação informado'
+                    );
+                }
+
+                if (($mvi->operacao === 'E' && in_array($mvi->responsavel_transporte, ['E', 'T', 'A']) === false) ||
+                    ($mvi->operacao === 'I' && in_array($mvi->responsavel_transporte, ['I', 'F', 'T']) === false) ||
+                    ($mvi->operacao === 'C' && in_array($mvi->responsavel_transporte, ['I', 'Q', 'T', 'F']) === false)
+                ) {
+                    throw new \InvalidArgumentException(
+                        'Campo "responsavel_transporte" inválido para o tipo de operação informado'
+                    );
+                }
+
+                $txt .= 'MVI'
+                     . $mvi->operacao
+                     . mb_str_pad($mvi->pais, 3, '0', STR_PAD_LEFT)
+                     . mb_str_pad($mvi->razao_social, 69, ' ', STR_PAD_RIGHT)
+                     . vsprintf('%s%s/%s%s%s%s%s%s%s-%s', str_split($mvi->numero_li))
+                     . \DateTime::createFromFormat('Y-m-d', $mvi->data_restricao_embarque)->format('d/m/Y')
+                     . \DateTime::createFromFormat('Y-m-d', $mvi->data_conhecimento_embarque)->format('d/m/Y')
+                     . mb_str_pad($mvi->numero_due, 15, ' ', STR_PAD_RIGHT)
+                     . \DateTime::createFromFormat('Y-m-d', $mvi->data_due)->format('d/m/Y')
+                     . vsprintf('%s%s/%s%s%s%s%s%s%s-%s', str_split($mvi->numero_di))
+                     . \DateTime::createFromFormat('Y-m-d', $mvi->data_di)->format('d/m/Y')
+                     . ($mvi->operacao === 'I' ? ' ' : $mvi->responsavel_armazenagem)
+                     . $mvi->responsavel_transporte
+                     . ($mvi->operacao !== 'I' ? ' ' : $mvi->local_entrega)
+                     . PHP_EOL;
+
+                if (isset($mvi->transporte) && in_array($mvi->responsavel_transporte, ['T', 'F'])) {
+                    $txt .= ($mvi->responsavel_transporte === 'T' ? 'TRA' : 'TRI')
+                         . ($mvi->responsavel_transporte === 'T' ? $mvi->transporte->cnpj : '')
+                         . mb_str_pad($mvi->transporte->razao_social, 70, ' ', STR_PAD_RIGHT)
+                         . PHP_EOL;
+                }
+
+                if (isset($mvi->armazenagem) && in_array($mvi->responsavel_armazenagem, ['T', 'I'])) {
+                    $complemento = isset($mvi->armazenagem->complemento) ? $mvi->armazenagem->complemento : '';
+
+                    $txt .= 'AMZ'
+                         . $mvi->armazenagem->cnpj
+                         . mb_str_pad($mvi->armazenagem->razao_social, 70, ' ', STR_PAD_RIGHT)
+                         . mb_str_pad($mvi->armazenagem->endereco, 70, ' ', STR_PAD_RIGHT)
+                         . vsprintf('%s%s.%s%s%s-%s%s%s', str_split($mvi->armazenagem->cep))
+                         . mb_str_pad($mvi->armazenagem->numero, 5, ' ', STR_PAD_RIGHT)
+                         . mb_str_pad($complemento, 20, ' ', STR_PAD_RIGHT)
+                         . mb_str_pad($mvi->armazenagem->bairro, 30, ' ', STR_PAD_RIGHT)
+                         . $mvi->armazenagem->uf
+                         . mb_str_pad($mvi->armazenagem->municipio, 7, ' ', STR_PAD_RIGHT)
+                         . PHP_EOL;
+                }
+
+                if (!isset($mvi->entrega) && $mvi->operacao === 'I') {
+                    throw new \InvalidArgumentException('Campo "adquirente" obrigatório para operação de Importação');
+                }
+                if (isset($mvi->entrega) && $mvi->operacao === 'I') {
+                    $complemento = isset($mvi->entrega->complemento) ? $mvi->entrega->complemento : '';
+
+                    $txt .= 'TER'
+                         . $mvi->entrega->cnpj
+                         . mb_str_pad($mvi->entrega->razao_social, 70, ' ', STR_PAD_RIGHT)
+                         . mb_str_pad($mvi->entrega->endereco, 70, ' ', STR_PAD_RIGHT)
+                         . vsprintf('%s%s.%s%s%s-%s%s%s', str_split($mvi->entrega->cep))
+                         . mb_str_pad($mvi->entrega->numero, 5, ' ', STR_PAD_RIGHT)
+                         . mb_str_pad($complemento, 20, ' ', STR_PAD_RIGHT)
+                         . mb_str_pad($mvi->entrega->bairro, 30, ' ', STR_PAD_RIGHT)
+                         . $mvi->entrega->uf
+                         . mb_str_pad($mvi->entrega->municipio, 7, ' ', STR_PAD_RIGHT)
+                         . PHP_EOL;
+                }
+
+                if (!isset($mvi->adquirente) && $mvi->operacao === 'C') {
+                    throw new \InvalidArgumentException(
+                        'Campo "adquirente" obrigatório para operação de Importação por Conta e Ordem'
+                    );
+                }
+                if (isset($mvi->adquirente) && $mvi->operacao === 'C') {
+                    $complemento = isset($mvi->adquirente->complemento) ? $mvi->adquirente->complemento : '';
+
+                    $txt .= 'ADQ'
+                         . $mvi->adquirente->cnpj
+                         . mb_str_pad($mvi->adquirente->razao_social, 70, ' ', STR_PAD_RIGHT)
+                         . mb_str_pad($mvi->adquirente->endereco, 70, ' ', STR_PAD_RIGHT)
+                         . vsprintf('%s%s.%s%s%s-%s%s%s', str_split($mvi->entrega->cep))
+                         . mb_str_pad($mvi->adquirente->numero, 5, ' ', STR_PAD_RIGHT)
+                         . mb_str_pad($complemento, 20, ' ', STR_PAD_RIGHT)
+                         . mb_str_pad($mvi->adquirente->bairro, 30, ' ', STR_PAD_RIGHT)
+                         . $mvi->adquirente->uf
+                         . mb_str_pad($mvi->adquirente->municipio, 7, ' ', STR_PAD_RIGHT)
+                         . PHP_EOL;
+                }
+
+                foreach ($mvi->nota_fiscal as $nf) {
+                    $txt .= 'NF'
+                         . mb_str_pad($nf->numero_nf, 10, '0', STR_PAD_LEFT)
+                         . \DateTime::createFromFormat('Y-m-d', $nf->data_emissao)->format('d/m/Y')
+                         . $nf->tipo_operacao
+                         . PHP_EOL;
+                }
+
+                foreach ($mvi->produto as $produto) {
+                    $tipo = $this->searchTipoProduto($this->std->demonstrativo_geral, $produto);
+                    $txt .= Common::formatCodigoNcmProduto($produto->codigo_ncm, $tipo)
+                        . (in_array($tipo, ['PR', 'RC']) ?
+                            mb_str_pad($produto->concentracao, 3, '0', STR_PAD_LEFT) :
+                            '   ')
+                        . Common::formatDensidade($produto->densidade)
+                        . Common::formatQuantidade($produto->quantidade)
+                        . $produto->unidade
+                        . PHP_EOL;
+                }
+            }
+        }
 
         //TODO 3.1.5. Seção Utilização para Produção (UP)
 
@@ -283,13 +400,13 @@ class Mapas
                 $txt .= 'UC'
                      .  Common::formatCodigoNcmProduto($consumo->codigo_ncm, $tipo)
                      .  (in_array($tipo, ['PR', 'RC']) ?
-                        str_pad($consumo->concentracao, 3, '0', STR_PAD_LEFT) :
+                        mb_str_pad($consumo->concentracao, 3, '0', STR_PAD_LEFT) :
                         '   ')
                      .  Common::formatDensidade($consumo->densidade)
                      .  Common::formatQuantidade($consumo->quantidade)
                      .  $consumo->unidade
                      .  $consumo->codigo_consumo
-                     .  str_pad(
+                     .  mb_str_pad(
                          isset($consumo->observacao_consumo) ? $consumo->observacao_consumo : '',
                          62,
                          ' ',

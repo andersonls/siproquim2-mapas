@@ -16,7 +16,8 @@
     "require": {
         "php" : ">=7.1",
         "ext-json": "*",
-        "justinrainbow/json-schema": "^5.2"
+        "justinrainbow/json-schema": "^5.2",
+        "sehrgut/mb-str-pad": "dev-master"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5",

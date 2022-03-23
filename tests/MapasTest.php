@@ -62,6 +62,7 @@ class MapasTest extends TestCase
         $this->generateDemonstrativoGeralStd();
         $this->generateDemonstrativoGeralStd();
         $this->generateMovimentacaoStd();
+        $this->generateMovimentacaoInternacionalStd();
         $this->generateConsumoStd();
 
         $txt = Mapas::toString($this->std);
@@ -153,6 +154,76 @@ class MapasTest extends TestCase
         $this->std->movimentacao_nacional[0]->armazenadora->municipio = '4211504';
 
         return $this->std;
+    }
+
+    public function generateMovimentacaoInternacionalStd()
+    {
+        $this->std->movimentacao_internacional[0] = new \stdClass();
+        $this->std->movimentacao_internacional[0]->operacao = 'C';
+        $this->std->movimentacao_internacional[0]->pais = '24';
+        $this->std->movimentacao_internacional[0]->razao_social = 'Razao social internacional';
+        $this->std->movimentacao_internacional[0]->numero_li = '6756756756';
+        $this->std->movimentacao_internacional[0]->data_restricao_embarque = '2017-01-02';
+        $this->std->movimentacao_internacional[0]->data_conhecimento_embarque = '2017-01-02';
+        $this->std->movimentacao_internacional[0]->data_conhecimento_embarque = '2017-01-02';
+        $this->std->movimentacao_internacional[0]->numero_due = '19BR012345678-9';
+        $this->std->movimentacao_internacional[0]->data_due = '2017-01-02';
+        $this->std->movimentacao_internacional[0]->numero_di = '9999999999';
+        $this->std->movimentacao_internacional[0]->data_di = '2017-01-02';
+        $this->std->movimentacao_internacional[0]->responsavel_armazenagem = 'T';
+        $this->std->movimentacao_internacional[0]->responsavel_transporte = 'T';
+        $this->std->movimentacao_internacional[0]->local_entrega = 'I';
+
+        $this->std->movimentacao_internacional[0]->transporte = new \stdClass();
+        $this->std->movimentacao_internacional[0]->transporte->cnpj = '01337593184567';
+        $this->std->movimentacao_internacional[0]->transporte->razao_social = 'razão social transporte';
+
+        $this->std->movimentacao_internacional[0]->armazenagem = new \stdClass();
+        $this->std->movimentacao_internacional[0]->armazenagem->cnpj = '01337593184567';
+        $this->std->movimentacao_internacional[0]->armazenagem->razao_social = 'razão social armazenagem';
+        $this->std->movimentacao_internacional[0]->armazenagem->endereco = 'Rua das armazenagens';
+        $this->std->movimentacao_internacional[0]->armazenagem->cep = '88050050';
+        $this->std->movimentacao_internacional[0]->armazenagem->numero = '1234';
+        $this->std->movimentacao_internacional[0]->armazenagem->bairro = 'Bairro dos galpões';
+        $this->std->movimentacao_internacional[0]->armazenagem->uf = 'SC';
+        $this->std->movimentacao_internacional[0]->armazenagem->municipio = '4211504';
+
+        $this->std->movimentacao_internacional[0]->entrega = new \stdClass();
+        $this->std->movimentacao_internacional[0]->entrega->cnpj = '01337593184567';
+        $this->std->movimentacao_internacional[0]->entrega->razao_social = 'razão social entregador';
+        $this->std->movimentacao_internacional[0]->entrega->endereco = 'Rua dos entregadores';
+        $this->std->movimentacao_internacional[0]->entrega->cep = '88050050';
+        $this->std->movimentacao_internacional[0]->entrega->numero = '1234';
+        $this->std->movimentacao_internacional[0]->entrega->bairro = 'Bairro do correio';
+        $this->std->movimentacao_internacional[0]->entrega->uf = 'SC';
+        $this->std->movimentacao_internacional[0]->entrega->municipio = '4211504';
+
+        $this->std->movimentacao_internacional[0]->adquirente = new \stdClass();
+        $this->std->movimentacao_internacional[0]->adquirente->cnpj = '01337593184567';
+        $this->std->movimentacao_internacional[0]->adquirente->razao_social = 'razão social adquirente';
+        $this->std->movimentacao_internacional[0]->adquirente->endereco = 'Rua dos compradores';
+        $this->std->movimentacao_internacional[0]->adquirente->cep = '88050050';
+        $this->std->movimentacao_internacional[0]->adquirente->numero = '1234';
+        $this->std->movimentacao_internacional[0]->adquirente->bairro = 'Bairro das compras';
+        $this->std->movimentacao_internacional[0]->adquirente->uf = 'SC';
+        $this->std->movimentacao_internacional[0]->adquirente->municipio = '4211504';
+
+        $this->std->movimentacao_internacional[0]->nota_fiscal[0] = new \stdClass();
+        $this->std->movimentacao_internacional[0]->nota_fiscal[0]->numero_nf = '1010201010';
+        $this->std->movimentacao_internacional[0]->nota_fiscal[0]->data_emissao = '2017-01-11';
+        $this->std->movimentacao_internacional[0]->nota_fiscal[0]->tipo_operacao = 'E';
+
+        $this->std->movimentacao_internacional[0]->nota_fiscal[1] = new \stdClass();
+        $this->std->movimentacao_internacional[0]->nota_fiscal[1]->numero_nf = '1210201010';
+        $this->std->movimentacao_internacional[0]->nota_fiscal[1]->data_emissao = '2017-01-11';
+        $this->std->movimentacao_internacional[0]->nota_fiscal[1]->tipo_operacao = 'S';
+
+        $this->std->movimentacao_internacional[0]->produto[0] = new \stdClass();
+        $this->std->movimentacao_internacional[0]->produto[0]->codigo_ncm = 'TPN12881067';
+        $this->std->movimentacao_internacional[0]->produto[0]->concentracao = 1;
+        $this->std->movimentacao_internacional[0]->produto[0]->densidade = 1.1;
+        $this->std->movimentacao_internacional[0]->produto[0]->quantidade = 100;
+        $this->std->movimentacao_internacional[0]->produto[0]->unidade = 'L';
     }
 
     public function generateConsumoStd() : StdClass

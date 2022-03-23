@@ -335,6 +335,320 @@
                 }
             }
         },
+        "movimentacao_internacional": {
+            "required": false,
+            "type": ["array", "null"],
+            "minItems": 0,
+            "maxItems": 99,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "operacao": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(E|I|C)$"
+                    },
+                    "pais": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 999
+                    },
+                    "razao_social": {
+                        "required": true,
+                        "type": "string",
+                        "maxLength": 69
+                    },
+                    "numero_li": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9999999999
+                    },
+                    "data_restricao_embarque": {
+                        "required": true,
+                        "$ref": "#/definitions/data"
+                    },
+                    "data_conhecimento_embarque": {
+                        "required": true,
+                        "$ref": "#/definitions/data"
+                    },
+                    "numero_due": {
+                        "required": true,
+                        "type": "string",
+                        "maxLength": 15
+                    },
+                    "data_due": {
+                        "required": true,
+                        "$ref": "#/definitions/data"
+                    },
+                    "numero_di": {
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9999999999
+                    },
+                    "data_di": {
+                        "required": true,
+                        "$ref": "#/definitions/data"
+                    },
+                    "responsavel_armazenagem": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(E|T|I|A)$"
+                    },
+                    "responsavel_transporte": {
+                        "required": true,
+                        "type": "string",
+                        "pattern": "^(E|T|I|A|F|Q)$"
+                    },
+                    "local_entrega": {
+                        "required": false,
+                        "type": ["string", "null"],
+                        "pattern": "^(T|I)$"
+                    },
+                    "transporte": {
+                        "type": ["object", "null"],
+                        "required": false,
+                        "properties": {
+                            "cnpj": {
+                                "required": false,
+                                "type": ["string", "null"],
+                                "$ref": "#/definitions/cnpj"
+                            },
+                            "razao_social": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            }
+                        }
+                    },
+                    "armazenagem": {
+                        "required": false,
+                        "type": ["object","null"],
+                        "properties": {
+                            "cnpj": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/cnpj"
+                            },
+                            "razao_social": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            },
+                            "endereco": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            },
+                            "cep": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^[0-9]{8}$"
+                            },
+                            "numero": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 5
+                            },
+                            "complemento": {
+                                "required": false,
+                                "type": "string",
+                                "maxLength": 20
+                            },
+                            "bairro": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 30
+                            },
+                            "uf": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/siglauf"
+                            },
+                            "municipio": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1100000,
+                                "maximum": 9999999
+                            }
+                        }
+                    },
+                    "entrega": {
+                        "required": false,
+                        "type": ["object","null"],
+                        "properties": {
+                            "cnpj": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/cnpj"
+                            },
+                            "razao_social": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            },
+                            "endereco": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            },
+                            "cep": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^[0-9]{8}$"
+                            },
+                            "numero": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 5
+                            },
+                            "complemento": {
+                                "required": false,
+                                "type": "string",
+                                "maxLength": 20
+                            },
+                            "bairro": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 30
+                            },
+                            "uf": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/siglauf"
+                            },
+                            "municipio": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1100000,
+                                "maximum": 9999999
+                            }
+                        }
+                    },
+                    "adquirente": {
+                        "required": false,
+                        "type": ["object","null"],
+                        "properties": {
+                            "cnpj": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/cnpj"
+                            },
+                            "razao_social": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            },
+                            "endereco": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 70
+                            },
+                            "cep": {
+                                "required": true,
+                                "type": "string",
+                                "pattern": "^[0-9]{8}$"
+                            },
+                            "numero": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 5
+                            },
+                            "complemento": {
+                                "required": false,
+                                "type": "string",
+                                "maxLength": 20
+                            },
+                            "bairro": {
+                                "required": true,
+                                "type": "string",
+                                "maxLength": 30
+                            },
+                            "uf": {
+                                "required": true,
+                                "type": "string",
+                                "$ref": "#/definitions/siglauf"
+                            },
+                            "municipio": {
+                                "required": true,
+                                "type": "integer",
+                                "minimum": 1100000,
+                                "maximum": 9999999
+                            }
+                        }
+                    },
+                    "nota_fiscal": {
+                        "required": true,
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 2,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "numero_nf": {
+                                    "required": true,
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 9999999999
+                                },
+                                "data_emissao": {
+                                    "required": true,
+                                    "type": "string",
+                                    "$ref": "#/definitions/data"
+                                },
+                                "tipo_operacao": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^(E|S)$"
+                                }
+                            }
+                        }
+                    },
+                    "produto": {
+                        "required": true,
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 99,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "codigo_ncm": {
+                                    "required": true,
+                                    "type": "string",
+                                    "oneOf": [
+                                        { "$ref": "#/definitions/codigo_ncm" },
+                                        { "$ref": "#/definitions/ncm" }
+                                    ]
+                                },
+                                "concentracao": {
+                                    "required": false,
+                                    "type": "integer",
+                                    "$ref": "#/definitions/concentracao"
+                                },
+                                "densidade": {
+                                    "required": true,
+                                    "type": "number",
+                                    "$ref": "#/definitions/densidade"
+                                },
+                                "quantidade": {
+                                    "required": true,
+                                    "type": "number",
+                                    "minimum": 1,
+                                    "maximum": 999999999
+                                },
+                                "unidade": {
+                                    "required": true,
+                                    "type": "string",
+                                    "pattern": "^(K|L)$"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "consumo": {
             "required": false,
             "type": ["array","null"],
@@ -347,12 +661,8 @@
                         "required": true,
                         "type": "string",
                         "oneOf": [
-                            {
-                                "$ref": "#/definitions/codigo_ncm"
-                            },
-                            {
-                                "$ref": "#/definitions/ncm"
-                            }
+                            {"$ref": "#/definitions/codigo_ncm"},
+                            {"$ref": "#/definitions/ncm"}
                         ]
                     },
                     "concentracao": {
@@ -384,10 +694,7 @@
                     },
                     "observacao_consumo": {
                         "required": false,
-                        "type": [
-                            "string",
-                            "null"
-                        ],
+                        "type": ["string", "null"],
                         "maxLength": 62
                     },
                     "data_consumo": {
