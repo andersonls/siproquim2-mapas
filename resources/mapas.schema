@@ -242,7 +242,7 @@
                                 },
                                 "concentracao": {
                                     "required": false,
-                                    "type": "integer",
+                                    "type": ["integer", "null"],
                                     "$ref": "#/definitions/concentracao"
                                 },
                                 "densidade": {
@@ -311,7 +311,7 @@
                             },
                             "complemento": {
                                 "required": false,
-                                "type": "string",
+                                "type": ["string","null"],
                                 "maxLength": 20
                             },
                             "bairro": {
@@ -454,7 +454,7 @@
                             },
                             "complemento": {
                                 "required": false,
-                                "type": "string",
+                                "type": ["string", "null"],
                                 "maxLength": 20
                             },
                             "bairro": {
@@ -506,7 +506,7 @@
                             },
                             "complemento": {
                                 "required": false,
-                                "type": "string",
+                                "type": ["string", "null"],
                                 "maxLength": 20
                             },
                             "bairro": {
@@ -558,7 +558,7 @@
                             },
                             "complemento": {
                                 "required": false,
-                                "type": "string",
+                                "type": ["string", "null"],
                                 "maxLength": 20
                             },
                             "bairro": {
@@ -624,7 +624,7 @@
                                 },
                                 "concentracao": {
                                     "required": false,
-                                    "type": "integer",
+                                    "type": ["integer", "null"],
                                     "$ref": "#/definitions/concentracao"
                                 },
                                 "densidade": {
@@ -667,7 +667,7 @@
                     },
                     "concentracao": {
                         "required": false,
-                        "type": "integer",
+                        "type": ["integer", "null"],
                         "$ref": "#/definitions/concentracao"
                     },
                     "densidade": {
