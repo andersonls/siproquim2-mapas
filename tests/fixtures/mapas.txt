@@ -1,8 +1,8 @@
 EM12345678000100FEV202211001000
 DG
-PRTPN12881067  Acido Sulfúrico                                                       00101,10
+PRTPN12881067Acido Sulfúrico                                                       00101,10
 PC1234.56.78Químico composto                                                      05,50
-SCTPN12961074  55
+SCTPN1296107455
 RCTPN12881067  Residuo de Acido Sulfúrico                                            01066,60
 RS1234.56.78Resíduo composto                                                      06,66
 RBTPN12961074  66
