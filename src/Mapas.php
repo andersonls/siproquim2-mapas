@@ -109,7 +109,7 @@ class Mapas
         if (isset($this->std->demonstrativo_geral->produto_controlado)) {
             foreach ($this->std->demonstrativo_geral->produto_controlado as $produto) {
                 $txt .= 'PR'
-                     .  mb_str_pad($produto->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
+                     .  mb_str_pad($produto->codigo_ncm, 11, ' ', STR_PAD_RIGHT)
                      .  mb_str_pad($produto->nome_comercial, 70, ' ', STR_PAD_RIGHT)
                      .  mb_str_pad($produto->concentracao, 3, '0', STR_PAD_LEFT)
                      .  Common::formatDensidade($produto->densidade)
@@ -129,7 +129,7 @@ class Mapas
 
                 foreach ($produto->substancia_controlada as $substancia) {
                     $txt .= 'SC'
-                         .  mb_str_pad($substancia->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
+                         .  mb_str_pad($substancia->codigo_ncm, 11, ' ', STR_PAD_RIGHT)
                          .  mb_str_pad($substancia->concentracao, 2, '0', STR_PAD_LEFT)
                          .  PHP_EOL
                     ;
@@ -366,13 +366,13 @@ class Mapas
                 foreach ($mvi->produto as $produto) {
                     $tipo = $this->searchTipoProduto($this->std->demonstrativo_geral, $produto);
                     $txt .= Common::formatCodigoNcmProduto($produto->codigo_ncm, $tipo)
-                        . (in_array($tipo, ['PR', 'RC']) ?
+                         . (in_array($tipo, ['PR', 'RC']) ?
                             mb_str_pad($produto->concentracao, 3, '0', STR_PAD_LEFT) :
                             '   ')
-                        . Common::formatDensidade($produto->densidade)
-                        . Common::formatQuantidade($produto->quantidade)
-                        . $produto->unidade
-                        . PHP_EOL;
+                         . Common::formatDensidade($produto->densidade)
+                         . Common::formatQuantidade($produto->quantidade)
+                         . $produto->unidade
+                         . PHP_EOL;
                 }
             }
         }
