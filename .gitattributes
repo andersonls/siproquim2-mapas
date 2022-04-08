@@ -16,3 +16,5 @@
 /manuals            export-ignore
 /examples           export-ignore
 /images             export-ignore
+/.github            export-ignore
+/bootstrap.php      export-ignore
