@@ -13,8 +13,8 @@
             "$ref": "#/definitions/mes_ano"
         },
         "demonstrativo_geral": {
-            "required": true,
-            "type": "object",
+            "required": false,
+            "type": ["object", "null"],
             "properties": {
                 "produto_controlado": {
                     "required": false,
@@ -232,6 +232,11 @@
                         "items": {
                             "type": "object",
                             "properties": {
+                                "tipo": {
+                                    "required": false,
+                                    "type": ["string", "null"],
+                                    "pattern": "^(PR|PC|RC|RS)$"
+                                },
                                 "codigo_ncm": {
                                     "required": true,
                                     "type": "string",
@@ -657,6 +662,11 @@
             "items": {
                 "type": "object",
                 "properties": {
+                    "tipo": {
+                        "required": false,
+                        "type": ["string", "null"],
+                        "pattern": "^(PR|PC|RC|RS)$"
+                    },
                     "codigo_ncm": {
                         "required": true,
                         "type": "string",

@@ -104,66 +104,70 @@ class Mapas
              . PHP_EOL
         ;
 
-        $txt .= 'DG' . PHP_EOL;
+        $demonstrativoGeral = new \StdClass();
+        if (isset($this->std->demonstrativo_geral)) {
+            $demonstrativoGeral = $this->std->demonstrativo_geral;
+            $txt .= 'DG' . PHP_EOL;
 
-        if (isset($this->std->demonstrativo_geral->produto_controlado)) {
-            foreach ($this->std->demonstrativo_geral->produto_controlado as $produto) {
-                $txt .= 'PR'
-                     .  mb_str_pad($produto->codigo_ncm, 11, ' ', STR_PAD_RIGHT)
-                     .  mb_str_pad($produto->nome_comercial, 70, ' ', STR_PAD_RIGHT)
-                     .  mb_str_pad($produto->concentracao, 3, '0', STR_PAD_LEFT)
-                     .  Common::formatDensidade($produto->densidade)
-                     .  PHP_EOL
-                ;
-            }
-        }
-
-        if (isset($this->std->demonstrativo_geral->produto_composto)) {
-            foreach ($this->std->demonstrativo_geral->produto_composto as $produto) {
-                $txt .= 'PC'
-                    .  vsprintf('%s%s%s%s.%s%s.%s%s', str_split($produto->ncm))
-                    .  mb_str_pad(ucfirst(strtolower($produto->nome_comercial)), 70, ' ', STR_PAD_RIGHT)
-                    .  Common::formatDensidade($produto->densidade)
-                    .  PHP_EOL
-                ;
-
-                foreach ($produto->substancia_controlada as $substancia) {
-                    $txt .= 'SC'
-                         .  mb_str_pad($substancia->codigo_ncm, 11, ' ', STR_PAD_RIGHT)
-                         .  mb_str_pad($substancia->concentracao, 2, '0', STR_PAD_LEFT)
-                         .  PHP_EOL
+            if (isset($demonstrativoGeral->produto_controlado)) {
+                foreach ($demonstrativoGeral->produto_controlado as $produto) {
+                    $txt .= 'PR'
+                        .  mb_str_pad($produto->codigo_ncm, 11, ' ', STR_PAD_RIGHT)
+                        .  mb_str_pad($produto->nome_comercial, 70, ' ', STR_PAD_RIGHT)
+                        .  mb_str_pad($produto->concentracao, 3, '0', STR_PAD_LEFT)
+                        .  Common::formatDensidade($produto->densidade)
+                        .  PHP_EOL
                     ;
                 }
             }
-        }
 
-        if (isset($this->std->demonstrativo_geral->residuo_controlado)) {
-            foreach ($this->std->demonstrativo_geral->residuo_controlado as $residuo) {
-                $txt .= 'RC'
-                     .  mb_str_pad($residuo->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
-                     .  mb_str_pad($residuo->nome_comercial, 70, ' ', STR_PAD_RIGHT)
-                     .  mb_str_pad($residuo->concentracao, 3, '0', STR_PAD_LEFT)
-                     .  Common::formatDensidade($residuo->densidade)
-                     .  PHP_EOL
-                ;
-            }
-        }
-
-        if (isset($this->std->demonstrativo_geral->residuo_composto)) {
-            foreach ($this->std->demonstrativo_geral->residuo_composto as $residuo) {
-                $txt .= 'RS'
-                    .  vsprintf('%s%s%s%s.%s%s.%s%s', str_split($residuo->ncm))
-                    .  mb_str_pad(ucfirst(strtolower($residuo->nome_comercial)), 70, ' ', STR_PAD_RIGHT)
-                    .  Common::formatDensidade($residuo->densidade)
-                    .  PHP_EOL
-                ;
-
-                foreach ($residuo->substancia_controlada as $substancia) {
-                    $txt .= 'RB'
-                         .  mb_str_pad($substancia->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
-                         .  mb_str_pad($substancia->concentracao, 2, '0', STR_PAD_LEFT)
-                         .  PHP_EOL
+            if (isset($demonstrativoGeral->produto_composto)) {
+                foreach ($demonstrativoGeral->produto_composto as $produto) {
+                    $txt .= 'PC'
+                        .  vsprintf('%s%s%s%s.%s%s.%s%s', str_split($produto->ncm))
+                        .  mb_str_pad(ucfirst(strtolower($produto->nome_comercial)), 70, ' ', STR_PAD_RIGHT)
+                        .  Common::formatDensidade($produto->densidade)
+                        .  PHP_EOL
                     ;
+
+                    foreach ($produto->substancia_controlada as $substancia) {
+                        $txt .= 'SC'
+                            .  mb_str_pad($substancia->codigo_ncm, 11, ' ', STR_PAD_RIGHT)
+                            .  mb_str_pad($substancia->concentracao, 2, '0', STR_PAD_LEFT)
+                            .  PHP_EOL
+                        ;
+                    }
+                }
+            }
+
+            if (isset($demonstrativoGeral->residuo_controlado)) {
+                foreach ($demonstrativoGeral->residuo_controlado as $residuo) {
+                    $txt .= 'RC'
+                        .  mb_str_pad($residuo->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
+                        .  mb_str_pad($residuo->nome_comercial, 70, ' ', STR_PAD_RIGHT)
+                        .  mb_str_pad($residuo->concentracao, 3, '0', STR_PAD_LEFT)
+                        .  Common::formatDensidade($residuo->densidade)
+                        .  PHP_EOL
+                    ;
+                }
+            }
+
+            if (isset($demonstrativoGeral->residuo_composto)) {
+                foreach ($demonstrativoGeral->residuo_composto as $residuo) {
+                    $txt .= 'RS'
+                        .  vsprintf('%s%s%s%s.%s%s.%s%s', str_split($residuo->ncm))
+                        .  mb_str_pad(ucfirst(strtolower($residuo->nome_comercial)), 70, ' ', STR_PAD_RIGHT)
+                        .  Common::formatDensidade($residuo->densidade)
+                        .  PHP_EOL
+                    ;
+
+                    foreach ($residuo->substancia_controlada as $substancia) {
+                        $txt .= 'RB'
+                            .  mb_str_pad($substancia->codigo_ncm, 13, ' ', STR_PAD_RIGHT)
+                            .  mb_str_pad($substancia->concentracao, 2, '0', STR_PAD_LEFT)
+                            .  PHP_EOL
+                        ;
+                    }
                 }
             }
         }
@@ -198,7 +202,7 @@ class Mapas
             ;
 
             foreach ($movimentacao->movimento as $movimento) {
-                $tipo = $this->searchTipoProduto($this->std->demonstrativo_geral, $movimento);
+                $tipo = $this->searchTipoProduto($demonstrativoGeral, $movimento);
 
                 if ($tipo === null) {
                     throw new \InvalidArgumentException(
@@ -364,7 +368,13 @@ class Mapas
                 }
 
                 foreach ($mvi->produto as $produto) {
-                    $tipo = $this->searchTipoProduto($this->std->demonstrativo_geral, $produto);
+                    $tipo = $this->searchTipoProduto($demonstrativoGeral, $produto);
+                    if ($tipo === null) {
+                        throw new \InvalidArgumentException(
+                            'Produto ' . $produto->codigo_ncm . ' não encontrado no demonstrativo geral'
+                        );
+                    }
+
                     $txt .= Common::formatCodigoNcmProduto($produto->codigo_ncm, $tipo)
                          . (in_array($tipo, ['PR', 'RC']) ?
                             mb_str_pad($produto->concentracao, 3, '0', STR_PAD_LEFT) :
@@ -383,7 +393,7 @@ class Mapas
 
         if (isset($this->std->consumo)) {
             foreach ($this->std->consumo as $consumo) {
-                $tipo = $this->searchTipoProduto($this->std->demonstrativo_geral, $consumo);
+                $tipo = $this->searchTipoProduto($demonstrativoGeral, $consumo);
 
                 if ($tipo === null) {
                     throw new \InvalidArgumentException(
@@ -472,6 +482,16 @@ class Mapas
                     break;
                 }
             }
+        }
+
+        if ($tipo === null && isset($produto->tipo) === true) {
+            $tipo = $produto->tipo;
+        }
+
+        if (in_array($tipo, ['PR', 'PC', 'RC', 'RS']) === false) {
+            throw new \InvalidArgumentException(
+                'Tipo do produto ' . $produto->codigo_ncm . ' inválido (' . $tipo . ')'
+            );
         }
 
         return $tipo;

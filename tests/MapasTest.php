@@ -49,7 +49,6 @@ class MapasTest extends TestCase
     {
         $this->generateHeaderStd();
         $this->generateDemonstrativoGeralStd();
-        $this->generateDemonstrativoGeralStd();
         $this->generateMovimentacaoStd();
         $this->generateConsumoStd();
 
@@ -60,7 +59,6 @@ class MapasTest extends TestCase
     {
         $this->generateHeaderStd();
         $this->generateDemonstrativoGeralStd();
-        $this->generateDemonstrativoGeralStd();
         $this->generateMovimentacaoStd();
         $this->generateMovimentacaoInternacionalStd();
         $this->generateConsumoStd();
@@ -68,6 +66,18 @@ class MapasTest extends TestCase
         $txt = Mapas::toString($this->std);
 
         $this->assertEquals(trim(file_get_contents(__DIR__ . '/fixtures/mapas.txt')), $txt);
+    }
+
+    public function testToStringSemSecaoDemonstrativoGeral()
+    {
+        $this->generateHeaderStd();
+        $this->generateMovimentacaoStd();
+        $this->generateMovimentacaoInternacionalStd();
+        $this->generateConsumoStd();
+
+        $txt = Mapas::toString($this->std);
+
+        $this->assertEquals(trim(file_get_contents(__DIR__ . '/fixtures/mapas_sem_demonstrativo_geral.txt')), $txt);
     }
 
     protected function generateHeaderStd() : StdClass
@@ -126,6 +136,7 @@ class MapasTest extends TestCase
         $this->std->movimentacao_nacional[0]->transporte = 'F';
 
         $this->std->movimentacao_nacional[0]->movimento[0] = new \stdClass();
+        $this->std->movimentacao_nacional[0]->movimento[0]->tipo = 'PR';
         $this->std->movimentacao_nacional[0]->movimento[0]->codigo_ncm = 'TPN12881067';
         $this->std->movimentacao_nacional[0]->movimento[0]->concentracao = 1;
         $this->std->movimentacao_nacional[0]->movimento[0]->densidade = 1.1;
@@ -133,6 +144,7 @@ class MapasTest extends TestCase
         $this->std->movimentacao_nacional[0]->movimento[0]->unidade = 'L';
 
         $this->std->movimentacao_nacional[0]->movimento[1] = new \stdClass();
+        $this->std->movimentacao_nacional[0]->movimento[1]->tipo = 'PC';
         $this->std->movimentacao_nacional[0]->movimento[1]->codigo_ncm = '12345678';
         $this->std->movimentacao_nacional[0]->movimento[1]->densidade = 5.5;
         $this->std->movimentacao_nacional[0]->movimento[1]->quantidade = 500;
@@ -219,6 +231,7 @@ class MapasTest extends TestCase
         $this->std->movimentacao_internacional[0]->nota_fiscal[1]->tipo_operacao = 'S';
 
         $this->std->movimentacao_internacional[0]->produto[0] = new \stdClass();
+        $this->std->movimentacao_internacional[0]->produto[0]->tipo = 'PR';
         $this->std->movimentacao_internacional[0]->produto[0]->codigo_ncm = 'TPN12881067';
         $this->std->movimentacao_internacional[0]->produto[0]->concentracao = 1;
         $this->std->movimentacao_internacional[0]->produto[0]->densidade = 1.1;
@@ -229,6 +242,7 @@ class MapasTest extends TestCase
     public function generateConsumoStd() : StdClass
     {
         $this->std->consumo[0] = new \stdClass();
+        $this->std->consumo[0]->tipo = 'PR';
         $this->std->consumo[0]->codigo_ncm = 'TPN12881067';
         $this->std->consumo[0]->concentracao = 1;
         $this->std->consumo[0]->densidade = 1.1;
@@ -239,6 +253,7 @@ class MapasTest extends TestCase
         $this->std->consumo[0]->data_consumo = '2022-02-15';
 
         $this->std->consumo[1] = new \stdClass();
+        $this->std->consumo[1]->tipo = 'PR';
         $this->std->consumo[1]->codigo_ncm = 'TPN12881067';
         $this->std->consumo[1]->concentracao = 1;
         $this->std->consumo[1]->densidade = 1.1;
