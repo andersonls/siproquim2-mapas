@@ -12,6 +12,52 @@
             "type": "string",
             "$ref": "#/definitions/mes_ano"
         },
+        "atividades": {
+            "required": true,
+            "type": "object",
+            "properties": {
+                "comercializacao_nacional": {
+                    "required": false,
+                    "type": ["string", "null"],
+                    "pattern": "^(S|N)$"
+                },
+                "comercializacao_internacional": {
+                    "required": false,
+                    "type": ["string", "null"],
+                    "pattern": "^(S|N)$"
+                },
+                "producao": {
+                    "required": false,
+                    "type": ["string", "null"],
+                    "pattern": "^(S|N)$"
+                },
+                "transformacao": {
+                    "required": false,
+                    "type": ["string", "null"],
+                    "pattern": "^(S|N)$"
+                },
+                "consumo": {
+                    "required": false,
+                    "type": ["string", "null"],
+                    "pattern": "^(S|N)$"
+                },
+                "fabricacao": {
+                    "required": false,
+                    "type": ["string", "null"],
+                    "pattern": "^(S|N)$"
+                },
+                "transporte": {
+                    "required": false,
+                    "type": ["string", "null"],
+                    "pattern": "^(S|N)$"
+                },
+                "armazenamento": {
+                    "required": false,
+                    "type": ["string", "null"],
+                    "pattern": "^(S|N)$"
+                }
+            }
+        },
         "demonstrativo_geral": {
             "required": false,
             "type": ["object", "null"],

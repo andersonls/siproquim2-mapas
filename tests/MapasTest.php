@@ -85,6 +85,11 @@ class MapasTest extends TestCase
         $this->std = new stdClass();
         $this->std->cnpj = '12345678000100';
         $this->std->data = '2022-02';
+        $this->std->atividades = new \StdClass();
+        $this->std->atividades->comercializacao_nacional = 'S';
+        $this->std->atividades->comercializacao_internacional = 'S';
+        $this->std->atividades->producao = 'N';
+        $this->std->atividades->consumo = 'S';
 
         return $this->std;
     }

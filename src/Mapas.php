@@ -89,18 +89,19 @@ class Mapas
         $month = (int) substr($this->std->data, 5, 2);
         $month = Common::getMonthAbbreviation($month);
 
+        $atividades = $this->std->atividades;
         $txt = 'EM'
              . $this->std->cnpj
              . $month
              . $year
-             . (isset($this->std->movimentacao_nacional) ? 1 : 0) //Comercialização Nacional
-             . (isset($this->std->movimentacao_internacional) ? 1 : 0) //Comercialização Internacional
-             . '0' //TODO Produção
-             . '0' //TODO Transformação
-             . (isset($this->std->consumo) ? 1 : 0) //Consumo
-             . '0' //TODO Fabricação
-             . '0' //TODO Transporte
-             . '0' //TODO Armazenamento
+             . (isset($atividades->comercializacao_nacional) && $atividades->comercializacao_nacional === 'S' ? 1 : 0)
+             . (isset($atividades->comercializacao_internacional) && $atividades->comercializacao_internacional === 'S' ? 1 : 0)
+             . (isset($atividades->producao) && $atividades->producao === 'S' ? 1 : 0)
+             . (isset($atividades->transformacao) && $atividades->transformacao === 'S' ? 1 : 0)
+             . (isset($atividades->consumo) && $atividades->consumo === 'S' ? 1 : 0)
+             . (isset($atividades->fabricacao) && $atividades->fabricacao === 'S' ? 1 : 0)
+             . (isset($atividades->transporte) && $atividades->transporte === 'S' ? 1 : 0)
+             . (isset($atividades->armazenamento) && $atividades->armazenamento === 'S' ? 1 : 0)
              . PHP_EOL
         ;
 
