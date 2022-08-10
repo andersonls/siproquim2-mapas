@@ -437,7 +437,7 @@ class Mapas
 
         //TODO 3.1.11. Seção Armazenamento (AR)
 
-        return trim($txt);
+        return $txt;
     }
 
     protected function searchTipoProduto(stdClass $demonstrativoGeral, stdClass $produto) : ?string
