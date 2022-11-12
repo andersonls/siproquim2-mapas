@@ -304,7 +304,7 @@
                                 "quantidade": {
                                     "required": true,
                                     "type": "number",
-                                    "minimum": 1,
+                                    "minimum": 0,
                                     "maximum": 999999999
                                 },
                                 "unidade": {
@@ -686,7 +686,7 @@
                                 "quantidade": {
                                     "required": true,
                                     "type": "number",
-                                    "minimum": 1,
+                                    "minimum": 0,
                                     "maximum": 999999999
                                 },
                                 "unidade": {
@@ -734,7 +734,7 @@
                     "quantidade": {
                         "required": true,
                         "type": "number",
-                        "minimum": 1,
+                        "minimum": 0,
                         "maximum": 999999999
                     },
                     "unidade": {
