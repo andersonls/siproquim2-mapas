@@ -65,7 +65,7 @@ class MapasTest extends TestCase
 
         $txt = Mapas::toString($this->std);
 
-        $this->assertEquals(trim(file_get_contents(__DIR__ . '/fixtures/mapas.txt')), $txt);
+        $this->assertEquals(trim(file_get_contents(__DIR__ . '/fixtures/mapas.txt'), PHP_EOL), trim($txt, PHP_EOL));
     }
 
     public function testToStringSemSecaoDemonstrativoGeral()
@@ -77,7 +77,7 @@ class MapasTest extends TestCase
 
         $txt = Mapas::toString($this->std);
 
-        $this->assertEquals(trim(file_get_contents(__DIR__ . '/fixtures/mapas_sem_demonstrativo_geral.txt')), $txt);
+        $this->assertEquals(trim(file_get_contents(__DIR__ . '/fixtures/mapas_sem_demonstrativo_geral.txt'), PHP_EOL), trim($txt, PHP_EOL));
     }
 
     protected function generateHeaderStd() : StdClass
