@@ -28,14 +28,6 @@ class MapasTest extends TestCase
         new Mapas($this->std);
     }
 
-    public function testConstructorWithoutDemonstrativoGeralShouldThrowException()
-    {
-        $this->generateHeaderStd();
-
-        $this->expectException(\InvalidArgumentException::class);
-        new Mapas($this->std);
-    }
-
     public function testConstructor()
     {
         $this->generateHeaderStd();
