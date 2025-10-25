@@ -14,10 +14,9 @@
         }
     ],
     "require": {
-        "php" : ">=7.1",
+        "php" : ">=8.3",
         "ext-json": "*",
-        "justinrainbow/json-schema": "^5.2",
-        "sehrgut/mb-str-pad": "dev-master"
+        "justinrainbow/json-schema": "^5.2"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5",
